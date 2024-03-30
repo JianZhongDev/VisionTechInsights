@@ -28,7 +28,7 @@ jobs:
           hugo-version: '0.119.0'
           # extended: true       
       - name: Build
-        run: $hugo --minify
+        run: $hugo
 
       - name: Deploy
         if: github.ref == 'refs/heads/main'
