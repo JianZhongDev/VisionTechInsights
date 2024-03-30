@@ -1,7 +1,7 @@
 baseURL: https://VisionTechInsights/
 title: Vision Tech Insights
 paginate: 5
-theme: PaperMod
+theme: PaperModModify
 
 enableRobotsTXT: true
 buildDrafts: false

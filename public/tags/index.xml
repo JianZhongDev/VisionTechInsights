@@ -2,36 +2,36 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Vision Tech Insights</title>
-    <link>https://VisionTechInsights/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on Vision Tech Insights</description>
     <image>
       <title>Vision Tech Insights</title>
-      <url>https://VisionTechInsights/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://VisionTechInsights/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Fri, 29 Mar 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://VisionTechInsights/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Basics</title>
-      <link>https://VisionTechInsights/tags/basics/</link>
+      <link>http://localhost:1313/tags/basics/</link>
       <pubDate>Fri, 29 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://VisionTechInsights/tags/basics/</guid>
+      <guid>http://localhost:1313/tags/basics/</guid>
       <description></description>
     </item>
     <item>
       <title>Machine Vision</title>
-      <link>https://VisionTechInsights/tags/machine-vision/</link>
+      <link>http://localhost:1313/tags/machine-vision/</link>
       <pubDate>Fri, 29 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://VisionTechInsights/tags/machine-vision/</guid>
+      <guid>http://localhost:1313/tags/machine-vision/</guid>
       <description></description>
     </item>
     <item>
       <title>Optics</title>
-      <link>https://VisionTechInsights/tags/optics/</link>
+      <link>http://localhost:1313/tags/optics/</link>
       <pubDate>Fri, 29 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://VisionTechInsights/tags/optics/</guid>
+      <guid>http://localhost:1313/tags/optics/</guid>
       <description></description>
     </item>
   </channel>
