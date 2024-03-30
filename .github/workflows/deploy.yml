@@ -12,8 +12,7 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v3
         with:
-          # submodules: true
-          submodules: false
+          submodules: true
 
 
       - name: Checkout destination
