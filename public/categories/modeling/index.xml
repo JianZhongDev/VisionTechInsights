@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Modeling on Vision Tech Insights</title>
+    <link>http://localhost:1313/categories/modeling/</link>
+    <description>Recent content in Modeling on Vision Tech Insights</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 16 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/modeling/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Basic Math for Two Photon Fluorescence Microscopy</title>
+      <link>http://localhost:1313/posts/basic_math_for_two_photon_fluorescence_microscopy/</link>
+      <pubDate>Tue, 16 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/basic_math_for_two_photon_fluorescence_microscopy/</guid>
+      <description>Basic mathematical modeling method for imaging systems, using two photon fluorescence microscopy as an example.</description>
+    </item>
+  </channel>
+</rss>

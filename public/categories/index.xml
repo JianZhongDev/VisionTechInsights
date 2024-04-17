@@ -4,13 +4,23 @@
     <title>Categories on Vision Tech Insights</title>
     <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on Vision Tech Insights</description>
-    <image>
-      <title>Vision Tech Insights</title>
-      <url>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
+    <lastBuildDate>Tue, 16 Apr 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Modeling</title>
+      <link>http://localhost:1313/categories/modeling/</link>
+      <pubDate>Tue, 16 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/modeling/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Optics</title>
+      <link>http://localhost:1313/categories/optics/</link>
+      <pubDate>Tue, 16 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/optics/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

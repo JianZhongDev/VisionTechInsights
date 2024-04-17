@@ -3,16 +3,45 @@ title: Vision Tech Insights
 paginate: 5
 theme: PaperModModify
 
+enableInlineShortcodes: true
 enableRobotsTXT: true
 buildDrafts: false
 buildFuture: false
 buildExpired: false
+enableEmoji: true
+pygmentsUseClasses: true
 
 googleAnalytics: UA-123-45
 
 minify:
   disableXML: true
   minifyOutput: true
+
+
+languages:
+  en:
+    languageName: "English"
+    weight: 1
+    taxonomies:
+      category: categories
+      tag: tags
+      series: series
+    menu:
+      main:
+        # - name: Archive
+        #   url: archives
+        #   weight: 5
+        - name: Posts
+          url: posts/
+          weight: 5
+        - name: Search
+          url: search/
+          weight: 10
+        - name: Tags
+          url: tags/
+          weight: 10
+        # - name: WiKi
+        #   url: 
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
@@ -21,25 +50,28 @@ params:
   keywords: [Blog, Portfolio, PaperMod]
   author: Jian Zhong
   # author: ["Me", "You"] # multiple authors
-  images: ["<link or path of image for opengraph, twitter-cards>"]
+  # images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: 
   defaultTheme: auto # dark, light
   disableThemeToggle: false
-
   ShowReadingTime: true
-  ShowShareButtons: false
+  ShowShareButtons: true
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowWordCount: true
   ShowRssButtonInSectionTermList: true
+  ShowAllPagesInArchive: true
+  ShowPageNums: true
+  ShowToc: true
   UseHugoToc: true
+  displayFullLangName: true
   disableSpecial1stPost: false
   disableScrollToTop: false
   comments: false
   hidemeta: false
   hideSummary: false
-  showtoc: false
+  showtoc: true
   tocopen: false
 
   assets:
@@ -82,8 +114,6 @@ params:
       I am Jian Zhong, a UC Berkeley PhD candidate specializing in ultrafast imaging technology. Join me as I share my learning notes on optical and imaging technologies, from hardware to software development. 
       Let’s explore together!
 
-
-
   socialIcons:
     - name: github
       url: "https://github.com/JianZhongDev/"
@@ -100,10 +130,10 @@ params:
     yandex:
       SiteVerificationTag: "XYZabc"
 
-  cover:
-    hidden: true # hide everywhere but not in structured data
-    hiddenInList: true # hide on list pages and home
-    hiddenInSingle: true # hide on single page
+  # cover:
+  #   hidden: true # hide everywhere but not in structured data
+  #   hiddenInList: true # hide on list pages and home
+  #   hiddenInSingle: true # hide on single page
 
   # editPost:
   #   URL: "https://github.com/<path_to_repo>/content"
@@ -160,3 +190,15 @@ outputs:
     - RSS
     - JSON # necessary for search
 
+services:
+  instagram:
+    disableInlineCSS: true
+  twitter:
+    disableInlineCSS: true
+
+# markup:
+#   goldmark:
+#     renderer:
+#       unsafe: true
+#   highlight:
+#     noClasses: false
