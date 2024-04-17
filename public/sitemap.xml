@@ -2,9 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/posts/intro_point_scan_imaging/</loc>
-    <lastmod>2024-03-29T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/posts/basic_math_for_two_photon_fluorescence_microscopy/</loc>
     <lastmod>2024-04-16T00:00:00+00:00</lastmod>
   </url><url>
@@ -40,12 +37,6 @@
   </url><url>
     <loc>http://localhost:1313/</loc>
     <lastmod>2024-04-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/basics/</loc>
-    <lastmod>2024-03-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/machine-vision/</loc>
-    <lastmod>2024-03-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/search/</loc>
   </url>

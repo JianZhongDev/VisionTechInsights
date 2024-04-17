@@ -29,19 +29,5 @@
       <guid>http://localhost:1313/tags/optics/</guid>
       <description></description>
     </item>
-    <item>
-      <title>Basics</title>
-      <link>http://localhost:1313/tags/basics/</link>
-      <pubDate>Fri, 29 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/basics/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Machine Vision</title>
-      <link>http://localhost:1313/tags/machine-vision/</link>
-      <pubDate>Fri, 29 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/machine-vision/</guid>
-      <description></description>
-    </item>
   </channel>
 </rss>

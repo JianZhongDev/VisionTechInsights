@@ -9,13 +9,6 @@
     <lastBuildDate>Tue, 16 Apr 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/optics/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Introduction to basics of point scan imaging </title>
-      <link>http://localhost:1313/posts/intro_point_scan_imaging/</link>
-      <pubDate>Fri, 29 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/intro_point_scan_imaging/</guid>
-      <description>A very very very quick introductions to the basics of point scan imaging</description>
-    </item>
-    <item>
       <title>Basic Math for Two Photon Fluorescence Microscopy</title>
       <link>http://localhost:1313/posts/basic_math_for_two_photon_fluorescence_microscopy/</link>
       <pubDate>Tue, 16 Apr 2024 00:00:00 +0000</pubDate>
