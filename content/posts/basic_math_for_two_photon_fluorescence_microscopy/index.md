@@ -30,6 +30,11 @@ Two photon fluorescence microscopes utilize two-photon excitation phenomenon to 
 
 ## Modeling of the Imaging System
 
+<!-- ![2PFM Modeling](./2PFM_ModelingSummary.png)
+*summary of the imaging system modeling (image credit: Jian Zhong)* -->
+
+{{< figure src="./2PFM_ModelingSummary.png" attr="summary of the imaging system modeling (image credit: Jian Zhong)" align=center target="_blank" >}}
+
 At the heart of the two-photon microscope is the two-photon excitation phenomenon. So, when we model these microscopes, we'll follow the sequence of this process: excitation, two-photon absorption, fluorescence generation, and finally fluorescence signal detection. Since each scan location behaves the same way, we'll zoom in on just one spot for our analysis. We'll start by looking at how fluorescence is generated with a single pulse and a single fluorophore, and then we'll generalize our analysis to include multiple laser pulses and all the fluorophores within the focal point.
 
 {{< math.inline >}}
