@@ -121,6 +121,12 @@ params:
       url: "https://www.linkedin.com/in/jian-zhong-ucb2019phy/"
     - name: email
       url: "mailto:jian.zhong.dev@gmail.com"
+    - name: X
+      url: "https://twitter.com/Jian_Zhong_Dev"
+    - name: instagram
+      url: "https://www.instagram.com/jianzhongdev/"
+    - name: Pinterest
+      url: "https://www.pinterest.com/jianzhongdev/"
 
   analytics:
     google:
