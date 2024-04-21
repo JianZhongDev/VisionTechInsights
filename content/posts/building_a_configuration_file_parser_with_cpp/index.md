@@ -1,7 +1,7 @@
 ---
 author: "Jian Zhong"
 title: "Building a Configuration File Parser with C++"
-date: "2024-04-20"
+date: "2024-04-21"
 description: "A comprehensive guide on how to build a configuration file parser with C++ from scratch."
 tags: ["hardware programming", "C++"]
 categories: ["hardware programming"]
@@ -16,11 +16,11 @@ TocOpen: false
 ShowBreadCrumbs: true
 ---
 
-Configuration files are commonly used to adjust settings in computer programs. I'm presently developing a configuration file parser for my high-speed data acquisition system using C++. Along the way, I've discovered some useful techniques involving C++ generics and inheritance that streamline coding. Therefore, I decided to document these tricks in the hope that they'll be beneficial to others. You can find the ready-to-use source code for this configuration file module in this GitHub repository.
+Configuration files are commonly used to adjust settings in computer programs. I'm presently developing a configuration file parser for my high-speed data acquisition system using C++. Along the way, I've discovered some useful techniques involving C++ generics and inheritance that streamline coding. Therefore, I decided to document these tricks in the hope that they'll be beneficial to others. You can find the ready-to-use source code for this configuration file module in this [GitHub repository](https://github.com/JianZhongDev/CppConfigFile). (URL: https://github.com/JianZhongDev/CppConfigFile.)
 
 ## Configuration Files
 
-According to [Wikipedia](https://en.wikipedia.org/wiki/Configuration_file), configuration files are files used to configure the parameters and initial settings for computer programs. A configuration file parser is a piece of program that allows saving program settings to and loading them from configuration files. Configuration files are very handy when users need to provide certain configuration settings to the program before starting it. In my research, I've also discovered the convenience of having a configuration file parser to record the configuration settings of my experiments. This enables me to quickly switch between different software settings for various applications.
+According to [Wikipedia](https://en.wikipedia.org/wiki/Configuration_file), configuration files are files used to set up the parameters and initial settings for computer programs. A configuration file parser is a piece of program that allows saving program settings to and loading them from configuration files. Configuration files are very handy when users need to provide certain configuration settings to the program before starting it. In my research, I've also discovered the convenience of having a configuration file parser to record the configuration settings of my experiments. This enables me to quickly switch between different software settings for various applications.
 
 ## Requirement Analysis
 
@@ -809,6 +809,10 @@ Or
   url     = "https://jianzhongdev.github.io/VisionTechInsights/posts/building_a_configuration_file_parser_with_cpp/."
 }
 ```
+
+## References
+
+[1] "Configuration file." Wikipedia, The Free Encyclopedia. Wikimedia Foundation, Inc. Retrieved April 21, 2024, from https://en.wikipedia.org/wiki/Configuration_file. 
 
 
 
