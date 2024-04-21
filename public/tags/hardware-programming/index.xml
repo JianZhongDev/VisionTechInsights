@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Vision Tech Insights</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on Vision Tech Insights</description>
+    <title>Hardware Programming on Vision Tech Insights</title>
+    <link>http://localhost:1313/tags/hardware-programming/</link>
+    <description>Recent content in Hardware Programming on Vision Tech Insights</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 20 Apr 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/hardware-programming/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Building a Configuration File Parser with C&#43;&#43;</title>
       <link>http://localhost:1313/posts/building_a_configuration_file_parser_with_cpp/</link>
       <pubDate>Sat, 20 Apr 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/building_a_configuration_file_parser_with_cpp/</guid>
       <description>A comprehensive guide on how to build a configuration file parser with C&#43;&#43; from scratch.</description>
-    </item>
-    <item>
-      <title>Basic Math for Two Photon Fluorescence Microscopy</title>
-      <link>http://localhost:1313/posts/basic_math_for_two_photon_fluorescence_microscopy/</link>
-      <pubDate>Tue, 16 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/basic_math_for_two_photon_fluorescence_microscopy/</guid>
-      <description>Basic mathematical modeling method for imaging systems, using two photon fluorescence microscopy as an example.</description>
     </item>
   </channel>
 </rss>
