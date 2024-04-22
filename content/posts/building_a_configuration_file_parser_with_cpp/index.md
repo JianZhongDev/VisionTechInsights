@@ -16,7 +16,7 @@ TocOpen: false
 ShowBreadCrumbs: true
 ---
 
-Configuration files are commonly used to adjust settings in computer programs. I'm presently developing a configuration file parser for my high-speed data acquisition system using C++. Along the way, I've discovered some useful techniques involving C++ generics and inheritance that streamline coding. Therefore, I decided to document these tricks in the hope that they'll be beneficial to others. You can find the ready-to-use source code for this configuration file module in my [GitHub repository](https://github.com/JianZhongDev/CppConfigFile). (URL: https://github.com/JianZhongDev/CppConfigFile.)
+Configuration files are commonly used to adjust settings in computer programs. I'm presently developing a configuration file parser for my high-speed data acquisition system using C++. Along the way, I've discovered some useful techniques involving C++ generics and inheritance that streamline coding. Therefore, I decided to document these tricks in the hope that they'll be beneficial to others. You can find the ready-to-use source code for this configuration file parser in my [GitHub repository](https://github.com/JianZhongDev/CppConfigFile). (URL: https://github.com/JianZhongDev/CppConfigFile.)
 
 ## Configuration Files
 
