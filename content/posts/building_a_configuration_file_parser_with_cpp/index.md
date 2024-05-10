@@ -317,7 +317,7 @@ typedef int errflag_t;
 
 // delete all the elements in a generic hash map
 errflag_t clear_genhashmap(
-	std::unordered_map<std::string, GenericEntry*>& gen_hashmap
+	GenHashMap& gen_hashmap
 ) {
 	// iterate through the hash map to release all the entries
 	for (auto key_val_pair : gen_hashmap) {
@@ -327,7 +327,6 @@ errflag_t clear_genhashmap(
 
 	return 1;
 }
-
 ```
 
 Note: If maintaining the order of setting variables in the configuration file is crucial for your application, you can easily achieve this by switching the data type from `std::unordered_map` (hashmap) to `std::ordered_map` (tree-based map). Everything else in the code remains unchanged and can be used as is.
@@ -352,7 +351,7 @@ typedef int errflag_t;
 
 // save generic hash map entries to configuration text file
 errflag_t save_genhashmap_to_txt(
-	const std::unordered_map<std::string, GenericEntry*>& gen_hashmap,
+	const GenHashMap& gen_hashmap,
 	const std::string& dst_file_path,
 	std::ios_base::openmode dst_file_openmode = std::ios_base::out,
 	const std::string& type_name_dl = " ",
@@ -389,7 +388,9 @@ errflag_t save_genhashmap_to_txt(
 		err_flag = 1;
 	}
 	else {
-		std::cout << "ERR:\t Unable to open file. File path = " + dst_file_path << std::endl;
+		//std::cout << "ERR:\t Unable to open file. File path = " + dst_file_path << std::endl;
+		std::string err_msg = "ERR:\t Unable to open file. File path = " + dst_file_path + "\n";
+		std::cout << err_msg;
 		err_flag = -1;
 	}
 	return err_flag;
@@ -483,7 +484,7 @@ typedef int errflag_t;
 
 // update generic hash map entries according to configuration text file
 errflag_t update_genhashmap_from_txt(
-	std::unordered_map<std::string, GenericEntry*>& gen_hashmap,
+	GenHashMap& gen_hashmap,
 	const std::string& src_file_path,
 	std::ios_base::openmode src_file_openmode = std::ios_base::in,
 	const std::string& type_name_dl = " ",
@@ -548,23 +549,28 @@ errflag_t update_genhashmap_from_txt(
 					gen_hashmap[name_string]->read_val_string(value_string);
 				}
 				else {
-					std::cout << "ERR:\tType mismatch! " + type_string + " <--> " + hp_typename + "\n";
+					//std::cout << "ERR:\tType mismatch! " + type_string + " <--> " + hp_typename + "\n";
+					std::string err_string = "ERR:\tType mismatch! " + type_string + " <--> " + hp_typename + "\n";
+					std::cout << err_string;
 				}
 			}
 			else {
-				std::cout << "ERR:\tName not found! " + name_string + "\n";
+				//std::cout << "ERR:\tName not found! " + name_string + "\n";
+				std::string err_string = "ERR:\tName not found! " + name_string + "\n";
+				std::cout << err_string;
 			}
 		}
 		err_flag = 1;
 	}
 	else {
-		std::cout << "ERR:\t Unable to open file. File path = " + src_file_path << std::endl;
+		//std::cout << "ERR:\t Unable to open file. File path = " + src_file_path << std::endl;
+		std::string err_string = "ERR:\t Unable to open file. File path = " + src_file_path + "\n";
+		std::cout << err_string;
 		err_flag = -1;
 	}
 
 	return err_flag;
 }
-
 ```
 
 Since we typically use the same separators and comment notations when writing and reading the configuration file, it makes sense to create a class to store these separators and comment notations for the functions responsible for saving and loading the configuration file.
@@ -586,7 +592,7 @@ public:
 
 	// save generic hash map to file
 	errflag_t save_to_file(
-		const std::unordered_map<std::string, GenericEntry*>& gen_hashmap,
+		const GenHashMap& gen_hashmap,
 		const std::string& dst_file_path,
 		std::ios_base::openmode dst_file_openmode = std::ios_base::out,
 		const std::string& head_message = ""
@@ -606,7 +612,7 @@ public:
 
 	// load generic hash map 
 	errflag_t update_from_file(
-		std::unordered_map<std::string, GenericEntry*>& gen_hashmap,
+		GenHashMap& gen_hashmap,
 		const std::string& src_file_path,
 		std::ios_base::openmode src_file_openmode = std::ios_base::in
 	) {
