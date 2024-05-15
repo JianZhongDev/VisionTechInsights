@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Vision Tech Insights</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 21 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 May 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building and Training VGG with PyTorch: A Step-by-Step Guide</title>
+      <link>http://localhost:1313/posts/implement_train_vgg_pytorch/</link>
+      <pubDate>Mon, 13 May 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/implement_train_vgg_pytorch/</guid>
+      <description>A comprehensive guide on building and training VGG with PyTorch.</description>
+    </item>
     <item>
       <title>Building a Configuration File Parser with C&#43;&#43;</title>
       <link>http://localhost:1313/posts/building_a_configuration_file_parser_with_cpp/</link>
