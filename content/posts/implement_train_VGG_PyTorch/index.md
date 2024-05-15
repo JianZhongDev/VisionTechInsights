@@ -8,7 +8,7 @@ categories: ["computer vision", "modeling"]
 series: ["computer vision"]
 aliases: ["build-train-VGG-PyTorch-guide"]
 cover:
-   image: images\implement_train_VGG_PyTorch/VGGPyTorch_CoverImage.png
+   image: images/implement_train_VGG_PyTorch/VGGPyTorch_CoverImage.png
    caption: "[cover image] Architecture of VGG Model (image credit: Jian Zhong)"
 ShowToc: true
 TocOpen: false
