@@ -600,7 +600,7 @@ random_ch_shift_transform =  v2.Lambda(random_ch_shift)
 
 The VGG paper also employed additional augmentation techniques like random translations and random crops. However, since the CIFAR dataset's image size is much smaller (32x32) compared to the ImageNet dataset (256x256), there isn't much flexibility to utilize these techniques effectively.
 
-### Summary
+## Summary of data transformations 
 
 In summary, the data transformations for the training set, including preprocessing and all data augmentation techniques, can be implemented as follows:
 
