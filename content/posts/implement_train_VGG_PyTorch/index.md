@@ -25,7 +25,7 @@ In this blog post, we'll guide you through implementing and training the VGG arc
 
 ## VGG architecture and implementation
 
-As you can see in the **cover image** of this post, the VGG model is made up of multiple layers of convolution followed by max-pooling, and it ends with a few fully connected layers. he output from these layers is then fed into a softmax layer to give a normalized confidence score for each image category.
+As you can see in the **cover image** of this post, the VGG model is made up of multiple layers of convolution followed by max-pooling, and it ends with a few fully connected layers. The output from these layers is then fed into a softmax layer to give a normalized confidence score for each image category.
 
 The key features of the VGG network are these stacked convolutional layers and fully connected layers. We will start with these stacked layers in our implementation.
 
@@ -600,6 +600,42 @@ random_ch_shift_transform =  v2.Lambda(random_ch_shift)
 
 The VGG paper also employed additional augmentation techniques like random translations and random crops. However, since the CIFAR dataset's image size is much smaller (32x32) compared to the ImageNet dataset (256x256), there isn't much flexibility to utilize these techniques effectively.
 
+### Summary
+
+In summary, the data transformations for the training set, including preprocessing and all data augmentation techniques, can be implemented as follows:
+
+
+```Python {linenos=true}
+from torchvision.transforms import v2
+
+# NOTE: subtract_ch_avg() is defined in the Data processing section
+# NOTE: random_ch_shift() is defined in the Random color shift section
+
+## data transform for training
+train_data_transforms = v2.Compose([
+    v2.ToImage(),
+    v2.ToDtype(torch.float32,scale = True),
+    v2.Lambda(subtract_ch_avg),
+    v2.RandomHorizontalFlip(0.5),
+    v2.Lambda(random_ch_shift),
+])
+```
+
+For the test/validation set, all we need to do is include the preprocessing step in the data transformations.
+
+```Python {linenos=true}
+from torchvision.transforms import v2
+
+# NOTE: subtract_ch_avg() is defined in the Data processing section
+
+## data transform for validation
+validate_data_transforms = v2.Compose([
+    v2.ToImage(),
+    v2.ToDtype(torch.float32,scale = True),
+    v2.Lambda(subtract_ch_avg),
+])
+```
+
 ## Training and validation
 
 ### Top k accuracy (or error)
@@ -924,11 +960,15 @@ After training these model variations, I computed the top 1 to top 5 accuracies 
 
 We can observe that the accuracy tends to improve as the depth of the models increases.
 
+## Conclusion
+
+In this blog post, we've covered the implementation, training, and evaluation of the VGG network in a step-by-step manner. The VGG model showcases the effectiveness of deep neural networks in tackling image classification tasks. Moreover, their methods for data augmentation, regularization, and training provide valuable insights and lessons for training deep neural networks.
+
 ## Reference
 
 [1] Simonyan, K., & Zisserman, A. (2014). Very deep convolutional networks for Large-Scale image recognition. arXiv (Cornell University). https://doi.org/10.48550/arxiv.1409.1556
 
-[2] Krizhevsky, A., Sutskever, I., & Hinton, G. E. (2012). ImageNet Classification with Deep Convolutional Neural Networks. Neural Information Processing Systems, 25, 1097–1105. http://books.nips.cc/papers/files/nips25/NIPS2012_0534.pdf
+[2] Krizhevsky, A., Sutskever, I., & Hinton, G. E. (2012). ImageNet Classification with Deep Convolutional Neural Networks. Neural Information Processing Systems, 25, 1097–1105. https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html
 
 [3] Krizhevsky, A., Nair, V. and Hinton, G. (2014) The CIFAR-10 Dataset. https://www.cs.toronto.edu/~kriz/cifar.html
 
