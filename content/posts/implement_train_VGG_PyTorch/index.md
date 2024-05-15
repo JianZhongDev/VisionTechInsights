@@ -33,7 +33,6 @@ The key features of the VGG network are these stacked convolutional layers and f
 
 To start, we'll create the stacked convolutional layer as PyTorch `nn.Module`, like this:
 
-{{< details title="click to expand stacked convolutional layer code">}}
 ```Python {linenos=true}
 # stacked 2D convolutional layer
 class VGGStacked2DConv(nn.Module):
@@ -98,8 +97,6 @@ class VGGStacked2DConv(nn.Module):
         return y
 
 ```
-{{< /details >}}
-&NewLine;
 
 The stacked convolutional layer takes in a list of descriptor dictionaries, each detailing the setup for a repeated convolutional layer followed by an activation. It reads these configurations and builds the stacked convolutional layers accordingly. If certain configuration parameters are not specified, the code fills in default values.
 
@@ -109,7 +106,6 @@ VGG uses dropout regularizations in their fully connected layers. Adding the dro
 
 We can define the stacked fully connected layer in a similar manner as the stacked convolutional layers:
 
-{{< details title="click to expand stacked fully-connected layer code">}}
 ```Python {linenos=true}
 # stacked linear layers
 class VGGStackedLinear(nn.Module):
@@ -172,14 +168,11 @@ class VGGStackedLinear(nn.Module):
         return y
 
 ```
-{{< /details >}}
-&NewLine;
 
 ### VGG model
 
 Now that we've defined the stacked convolutional and fully-connected layers, we can construct the VGG model as follows:
 
-{{< details title="click to expand VGG model code">}}
 ```Python {linenos=true}
 # VGG model definition
 class VGG(nn.Module):
@@ -241,8 +234,6 @@ class VGG(nn.Module):
         return y
 
 ```
-{{< /details >}}
-&NewLine;
 
 The VGG model takes in a stacked convolutional layer descriptor list, and a fully connected layer descriptor. First, it goes through the convolutional layer descriptors, creating stacked convolutional layers for each descriptor and adding a max pooling layer after each set of stacked convolutional layers. Then, it flattens the output from all the convolutional layers and constructs stacked fully connected layers based on the linear layer descriptor. Finally, a Softmax layer is appended at the end of the network.
 
@@ -250,7 +241,6 @@ The VGG model takes in a stacked convolutional layer descriptor list, and a full
 
 Using the model definition provided above, we can create a VGG model by specifying a few layer descriptors. For instance, we can replicate the VGG16 model described in the VGG paper as follows:
 
-{{< details title="click to expand demo creating 16-layer VGG model">}}
 ```Python {linenos=true}
 ## Demo creating 16-layer VGG model
 
@@ -303,8 +293,6 @@ model = VGG.VGG(
 
 print(model)
 ```
-{{< /details >}}
-&NewLine;
 
 Here's what the printout of the VGG16 model looks like:
 
@@ -386,7 +374,6 @@ VGG(
 
 In the VGG paper, the only data processing done on the input data is subtracting the RGB value calculated from the training set. To apply this processing, we start by going through the entire training dataset and computing the mean value for each color channel.
 
-{{< details title="click to expand channel mean value calculation code">}}
 ```Python {linenos=true}
 ## calculated the averaged channel values across the entire data set
 
@@ -409,12 +396,9 @@ print("result val = ")
 print(repr(avg_ch_val))
 
 ```
-{{< /details >}}
-&NewLine;
 
 Using the mean channel value, we can perform the mentioned data processing by defining a background subtraction function and using the `Lambda() ` transform provided by `torchvision` like this:
 
-{{< details title="click to expand mean channel value subtraction code">}}
 ```Python {linenos=true}
 import functools
 from torchvision.transforms import v2
@@ -432,8 +416,6 @@ subtract_ch_avg = functools.partial(subtract_const, const_val = train_data_ch_av
 subtract_channel_mean_transform = v2.Lambda(subtract_ch_avg)
 
 ```
-{{< /details >}}
-&NewLine;
 
 ## Data Augmentation
 
@@ -443,19 +425,15 @@ The VGG paper also employed various data augmentation techniques to prevent over
 
 `torchvision` already includes a built-in transformation for randomly flipping images horizontally. Therefore, we can simply utilize this built-in transformation for horizontal flips.
 
-{{< details title="click to expand random horizontal flip code">}}
 ```Python {linenos=true}
 from torchvision.transforms import v2
 
 rand_hflip_transform = v2.RandomHorizontalFlip(0.5)
 
 ```
-{{< /details >}}
-&NewLine;
 
 In the VGG paper, they utilized both the original image and its horizontally flipped counterpart to predict classification results. They then averaged these results to obtain the final classification. Consequently, we can implement the validation process as follows:
 
-{{< details title="click to expand validation code">}}
 ```Python {linenos=true}
 # validate model in one epoch and return the top k-th result 
 def validate_one_epoch_topk_aug(
@@ -522,8 +500,6 @@ for i_epoch in range(nof_epochs):
 device, top_k)
     
 ```
-{{< /details >}}
-&NewLine;
 
 ### Random color shift
 
@@ -537,7 +513,6 @@ Before training begins, we go through the entire training set and gather all RGB
 </p>
 {{</ math.inline >}}
 
-{{< details title="click to expand dataset channel PCA code">}}
 ```Python {linenos=true}
 ## PCA for covariance matrix of image channels across all the pixels 
 
@@ -568,12 +543,9 @@ print("Vh:")
 print(Vh)
 ```
 Note: In this implementation, all pixels are loaded into computer memory at the same time. For larger datasets, the code for calculating the covariance matrix may need enhancements to compute it without simultaneously loading all data into memory.
-{{< /details >}}
-&NewLine;
 
 During training, we create a randomized linear combination of PCA eigenvectors by adding up the product of each eigenvector with a randomized amplitude. This amplitude is computed by multiplying the corresponding eigenvalue by a random value drawn from a Gaussian distribution with a mean of 0 and a standard deviation of 0.1.
 
-{{< details title="click to expand random color shift code">}}
 ```Python {linenos=true}
 import functools
 from torchvision.transforms import v2
@@ -623,8 +595,6 @@ random_ch_shift = functools.partial(random_ch_shift_pca,
 
 random_ch_shift_transform =  v2.Lambda(random_ch_shift)
 ```
-{{< /details >}}
-&NewLine;
 
 ### Other data augmentations
 
@@ -652,7 +622,6 @@ $$
 
 Therefore, top k accuracy can be calculated using the following code:
 
-{{< details title="click to expand top k accuarcy calculation code">}}
 ```Python {linenos=true}
 # Evaluate if label is within top k prediction result for one batch of data
 def batch_in_top_k(outputs, labels, top_k = 1):
@@ -663,8 +632,6 @@ def batch_in_top_k(outputs, labels, top_k = 1):
     return in_top_k   
 
 ```
-{{< /details >}}
-&NewLine;
 
 In each batch, we organize the softmax layer results, which represent the confidences for each predicted category, in descending order. Then, we check if the ground truth label is among the top k predictions. This check result is stored in a boolean mask array, where 'true' indicates the label is in the top k predictions, and 'false' indicates it's not. This boolean mask array holds the results for all samples within the batch. To find the total number of samples where the label is among the top k predictions, we simply sum the mask arrays from all batches.
 
@@ -672,13 +639,10 @@ In each batch, we organize the softmax layer results, which represent the confid
 
 VGG employs multinomial logistic regression as its loss function. For optimization, it utilizes mini-batch gradient descent with momentum and weight decay. In PyTorch, these can be implemented as follows:
 
-{{< details title="click to expand loss function and optimizer code">}}
 ```Python {linenos=true}
 loss_func = torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr = 1E-2, momentum = 0.9, weight_decay= 5E-4)
 ```
-{{< /details >}}
-&NewLine;
 
 Additionally, dropout regularization has been incorporated into the model as another form of regularization as mentioned earlier in this post.
 
@@ -686,7 +650,6 @@ Additionally, dropout regularization has been incorporated into the model as ano
 
 In the VGG paper, the authors initially train with a learning rate of 1E-2. Then, they reduce the learning rate by a factor of 10 when the validation set accuracy plateaus. This can be implemented using the `ReduceLROnPlateau()` function provided by PyTorch, like this:
 
-{{< details title="click to expand learing rate adjustment code">}}
 ```Python {linenos=true}
 scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
     optimizer = optimizer,
@@ -725,9 +688,6 @@ for i_epoch in range(nof_epochs):
 
 NOTE: The description of the `ReduceLROnPlateau()` function in the PyTorch documentation can be confusing. I found that reading the source code of the `ReduceLROnPlateau()` definition provides clearer understanding.
 
-{{< /details >}}
-&NewLine;
-
 ### Training deep models
 
 Optimizing deep models from scratch with completely random initialization can be very challenging for the optimizer. It often leads to the learning process getting stuck for long periods.
@@ -736,7 +696,6 @@ To tackle this issue, the VGG authors first train a shallow model. Then, they us
 
 Transferring learned parameters between models in PyTorch is straightforward. It involves copying the weights and biases from corresponding layers between the two models. If you're using the VGG model definition from this blog post, the example code looks like this:
 
-{{< details title="click to expand model parameter transfer code">}}
 ```Python {linenos=true}
 ## demo transfer model parameters
 
@@ -808,8 +767,6 @@ model2.network[0].network[0].weight = model1.network[0].network[0].weight
 model2.network[0].network[0].bias = model1.network[0].network[0].bias
 ```
 NOTE: We've organized the sequential layers of the VGG model and stacked them within the "network" attribute of the object. This means we can access each specific layer inside the network by indexing the "network" attribute.
-{{< /details >}}
-&NewLine;
 
 ## Results
 
@@ -978,7 +935,7 @@ We can observe that the accuracy tends to improve as the depth of the models inc
 ## Citation
 
 If you found this article helpful, please cite it as:
-> Zhong, Jian (May 2024). Building and Training VGG with PyTorch: A Step-by-Step Guide. Vision Tech Insights. https://jianzhongdev.github.io/VisionTechInsights/posts/implement_train_VGG_PyTorch/.
+> Zhong, Jian (May 2024). Building and Training VGG with PyTorch: A Step-by-Step Guide. Vision Tech Insights. https://jianzhongdev.github.io/VisionTechInsights/posts/implement_train_vgg_pytorch/.
 
 Or
 
@@ -989,7 +946,7 @@ Or
   journal = "jianzhongdev.github.io",
   year    = "2024",
   month   = "May",
-  url     = "https://jianzhongdev.github.io/VisionTechInsights/posts/implement_train_VGG_PyTorch/"
+  url     = "https://jianzhongdev.github.io/VisionTechInsights/posts/implement_train_vgg_pytorch/"
 }
 ```
 
