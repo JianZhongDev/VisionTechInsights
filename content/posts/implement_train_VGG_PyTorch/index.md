@@ -20,7 +20,7 @@ The VGG (Visual Geometry Group) model is a type of convolutional neural network 
 
 VGG's architecture has significantly shaped the field of neural networks, serving as a foundation and benchmark for many subsequent models in computer vision.
 
-In this blog post, we'll guide you through implementing and training the VGG architecture using PyTorch, step by step. You can find the complete code for defining and training the VGG model on my [GitHub repository](https://github.com/JianZhongDev/VGGPyTorch) (URL: https://github.com/JianZhongDev/VGGPyTorch).
+In this blog post, we'll guide you through implementing and training the VGG architecture using PyTorch, step by step. You can find the complete code for defining and training the VGG model on my [GitHub repository](https://github.com/JianZhongDev/VGGPyTorch) (URL: https://github.com/JianZhongDev/VGGPyTorch ).
 
 
 ## VGG architecture and implementation
