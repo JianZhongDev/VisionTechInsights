@@ -730,7 +730,7 @@ Optimizing deep models from scratch with completely random initialization can be
 
 To tackle this issue, the VGG authors first train a shallow model. Then, they use the learned parameters from this shallow model to initialize deeper ones.
 
-Transferring learned parameters between models in PyTorch is straightforward. It involves copying the weights and biases from corresponding layers between the two models. If you're using the VGG model definition from this blog post, the example code looks like this:
+Transferring learned parameters between models in PyTorch is straightforward. It involves copying the learnable parameters `state_dict` (i.e. weights and biases) from corresponding layers between the two models. If you're using the VGG model definition from this blog post, the example code looks like this:
 
 ```Python {linenos=true}
 ## demo transfer model parameters
@@ -799,8 +799,7 @@ model2 = VGG.VGG(
 )
 
 # transfer parameter of 1st convoluation layer from model 1 to model 2
-model2.network[0].network[0].weight = model1.network[0].network[0].weight
-model2.network[0].network[0].bias = model1.network[0].network[0].bias
+model2.network[0].network[0].load_state_dict(model1.network[0].network[0].state_dict())
 ```
 NOTE: We've organized the sequential layers of the VGG model and stacked them within the "network" attribute of the object. This means we can access each specific layer inside the network by indexing the "network" attribute.
 
