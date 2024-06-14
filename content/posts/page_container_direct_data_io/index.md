@@ -152,7 +152,7 @@ namespace Container{
 
 		// get capacity
 		errflag_t get_capacity(size_t* capacity_p) {
-			size_t capacity = *(this->buffer_size_p) - 2;
+			size_t capacity = *(this->buffer_size_p) - 2 * sizeof(size_t);
 			*capacity_p = capacity;
 			return SUCCESS;
 		}
@@ -340,7 +340,7 @@ errflag_t get_data_p(dtype** data_pp) {
 
 // get capacity
 errflag_t get_capacity(size_t* capacity_p) {
-	size_t capacity = *(this->buffer_size_p) - 2;
+	size_t capacity = *(this->buffer_size_p) - 2 * sizeof(size_t);
 	*capacity_p = capacity;
 	return SUCCESS;
 }
