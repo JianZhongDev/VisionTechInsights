@@ -23,13 +23,13 @@ VGG's architecture has significantly shaped the field of neural networks, servin
 In this blog post, we'll guide you through implementing and training the VGG architecture using PyTorch, step by step. You can find the complete code for defining and training the VGG model on my [GitHub repository](https://github.com/JianZhongDev/VGGPyTorch) (URL: https://github.com/JianZhongDev/VGGPyTorch ).
 
 
-## VGG architecture and implementation
+## VGG Architecture and Implementation
 
 As you can see in the **cover image** of this post, the VGG model is made up of multiple layers of convolution followed by max-pooling, and it ends with a few fully connected layers. The output from these layers is then fed into a softmax layer to give a normalized confidence score for each image category.
 
 The key features of the VGG network are these stacked convolutional layers and fully connected layers. We will start with these stacked layers in our implementation.
 
-### Stacked convolutional layers 
+### Stacked Convolutional Layers 
 
 To start, we'll create the stacked convolutional layer as PyTorch `nn.Module`, like this:
 
@@ -100,7 +100,7 @@ class VGGStacked2DConv(nn.Module):
 
 The stacked convolutional layer takes in a list of descriptor dictionaries, each detailing the setup for a repeated convolutional layer followed by an activation. It reads these configurations and builds the stacked convolutional layers accordingly. If certain configuration parameters are not specified, the code fills in default values.
 
-### Stacked fully-connected and dropout layers
+### Stacked Fully-Connected and Dropout Layers
 
 VGG uses dropout regularizations in their fully connected layers. Adding the dropout regularization within PyTorch is straightforward: we just need to insert dropout layers after each hidden layer inside the stacked fully connected layer. (NOTE: Section 4.2 of the [AlexNet paper](https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html) provides valuable insights into dropout layers. It's definitely worth a read.)
 
@@ -169,7 +169,7 @@ class VGGStackedLinear(nn.Module):
 
 ```
 
-### VGG model
+### VGG Model
 
 Now that we've defined the stacked convolutional and fully-connected layers, we can construct the VGG model as follows:
 
@@ -237,7 +237,7 @@ class VGG(nn.Module):
 
 The VGG model takes in a stacked convolutional layer descriptor list, and a fully connected layer descriptor. First, it goes through the convolutional layer descriptors, creating stacked convolutional layers for each descriptor and adding a max pooling layer after each set of stacked convolutional layers. Then, it flattens the output from all the convolutional layers and constructs stacked fully connected layers based on the linear layer descriptor. Finally, a Softmax layer is appended at the end of the network.
 
-### Model generation
+### Model Generation
 
 Using the model definition provided above, we can create a VGG model by specifying a few layer descriptors. For instance, we can replicate the VGG16 model described in the VGG paper as follows:
 
@@ -370,7 +370,7 @@ VGG(
 {{< /details >}}
 &NewLine;
 
-## Data processing
+## Data Processing
 
 In the VGG paper, the only data processing done on the input data is subtracting the RGB value calculated from the training set. To apply this processing, we start by going through the entire training dataset and computing the mean value for each color channel.
 
@@ -421,7 +421,7 @@ subtract_channel_mean_transform = v2.Lambda(subtract_ch_avg)
 
 The VGG paper also employed various data augmentation techniques to prevent overfitting. Here's how we implement them:
 
-### Random horizontal flip
+### Random Horizontal Flip
 
 `torchvision` already includes a built-in transformation for randomly flipping images horizontally. Therefore, we can simply utilize this built-in transformation for horizontal flips.
 
@@ -501,7 +501,7 @@ device, top_k)
     
 ```
 
-### Random color shift
+### Random Color Shift
 
 In VGG, another augmentation technique involved adjusting the RGB values of training images by a random combination of the principal component analysis (PCA) eigenvectors derived from the RGB values across all pixels of all images in the training set. For a detailed explanation, refer to section *4.1 Data Augmentation* in the [AlexNet paper](https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html).
 
@@ -596,11 +596,11 @@ random_ch_shift = functools.partial(random_ch_shift_pca,
 random_ch_shift_transform =  v2.Lambda(random_ch_shift)
 ```
 
-### Other data augmentations
+### Other Data Augmentations
 
 The VGG paper also employed additional augmentation techniques like random translations and random crops. However, since the CIFAR dataset's image size is much smaller (32x32) compared to the ImageNet dataset (256x256), there isn't much flexibility to utilize these techniques effectively.
 
-## Summary of data transformations 
+## Summary of Data Transformations 
 
 In summary, the data transformations for the training set, including preprocessing and all data augmentation techniques, can be implemented as follows:
 
@@ -636,9 +636,9 @@ validate_data_transforms = v2.Compose([
 ])
 ```
 
-## Training and validation
+## Training and Validation
 
-### Top k accuracy (or error)
+### Top k Accuracy (or Error)
 
 In the VGG paper, the main way they measured performance was using the top k error. In my version, I focused on calculating the top k accuracy instead. Top k accuracy shows how often the actual label is among the top k predictions made by the model with the highest confidence. On the other hand, top k error tells us how often the actual label is not included in the top k predictions.
 
@@ -671,7 +671,7 @@ def batch_in_top_k(outputs, labels, top_k = 1):
 
 In each batch, we organize the softmax layer results, which represent the confidences for each predicted category, in descending order. Then, we check if the ground truth label is among the top k predictions. This check result is stored in a boolean mask array, where 'true' indicates the label is in the top k predictions, and 'false' indicates it's not. This boolean mask array holds the results for all samples within the batch. To find the total number of samples where the label is among the top k predictions, we simply sum the mask arrays from all batches.
 
-### Loss function, regularization, and optimizer
+### Loss Function, Regularization, and Optimizer
 
 VGG employs multinomial logistic regression as its loss function. For optimization, it utilizes mini-batch gradient descent with momentum and weight decay. In PyTorch, these can be implemented as follows:
 
@@ -682,7 +682,7 @@ optimizer = torch.optim.SGD(model.parameters(), lr = 1E-2, momentum = 0.9, weigh
 
 Additionally, dropout regularization has been incorporated into the model as another form of regularization as mentioned earlier in this post.
 
-### Learning rate adjustment
+### Learning Rate Adjustment
 
 In the VGG paper, the authors initially train with a learning rate of 1E-2. Then, they reduce the learning rate by a factor of 10 when the validation set accuracy plateaus. This can be implemented using the `ReduceLROnPlateau()` function provided by PyTorch, like this:
 
@@ -724,7 +724,7 @@ for i_epoch in range(nof_epochs):
 
 NOTE: The description of the `ReduceLROnPlateau()` function in the PyTorch documentation can be confusing. I found that reading the source code of the `ReduceLROnPlateau()` definition provides clearer understanding.
 
-### Training deep models
+### Training Deep Models
 
 Optimizing deep models from scratch with completely random initialization can be very challenging for the optimizer. It often leads to the learning process getting stuck for long periods.
 

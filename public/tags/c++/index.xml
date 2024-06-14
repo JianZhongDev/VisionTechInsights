@@ -6,8 +6,15 @@
     <description>Recent content in C&#43;&#43; on Vision Tech Insights</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 21 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 13 Jun 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PageContainer: Fast, Direct Data I/O Without OS Buffering</title>
+      <link>http://localhost:1313/posts/page_container_direct_data_io/</link>
+      <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/page_container_direct_data_io/</guid>
+      <description>A comprehensive guide on how to build a C&#43;&#43; data structure enabling direct data IO without OS buffering</description>
+    </item>
     <item>
       <title>Building a Configuration File Parser with C&#43;&#43;</title>
       <link>http://localhost:1313/posts/building_a_configuration_file_parser_with_cpp/</link>
