@@ -577,7 +577,7 @@ class AutoencoderDataset(torch.utils.data.Dataset):
         return feature, target
 ```
 
-## Training and Validation Process
+### Training and Validation Process
 
 The training process for one epoch is implemented as follows:
 
