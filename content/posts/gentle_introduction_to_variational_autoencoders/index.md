@@ -168,13 +168,13 @@ Here,  {{< math.inline >}} \( j \) {{</ math.inline >}} indexes the dimensions o
 The term  {{< math.inline >}} \( \mathbb{E_{z}}( log(p_{\theta}(x^{(i)}|z)) ) \) {{</ math.inline >}} can be written as:
 
 $$
-\mathbb{E_{z}}( log(p_{\theta}(x^{(i)}|z)) ) = \mathbb{E_{z}}(log( A \cdot exp( - \frac{(x - D_{\theta}(z))^{2}}{2 \sigma^{2}}  ) )) 
+\mathbb{E_{z}}( log(p_{\theta}(x^{(i)}|z)) ) = \mathbb{E_{z}}(log( A \cdot exp( - \frac{(x^{(i)} - D_{\theta}(z))^{2}}{2 \sigma^{2}}  ) )) 
 $$
 $$
-= log(A) -\frac{1}{2 \sigma^{2}} \mathbb{E_{z}}((x - D_{\theta}(z))^{2})
+= log(A) -\frac{1}{2 \sigma^{2}} \mathbb{E_{z}}((x^{(i)} - D_{\theta}(z))^{2})
 $$
 $$
-= log(A) -\frac{1}{2 \sigma^{2}} \sum_{i=1}^{N}((x^{(i)} - \hat{x}^{(i)})^{2})
+= log(A) -\frac{1}{2 \sigma^{2}} (x^{(i)} - \hat{x}^{(i)})^{2}
 $$
 
 Here, {{< math.inline >}} \( A \) {{</ math.inline >}} is the normalization constant for the proposed Gaussian distribution, which is independent of model parameters and can be disregarded during optimization. {{< math.inline >}} \( \sigma \) {{</ math.inline >}} specified value when constructing the variational autoencoder model, adjusting how distinct each data reconstruction should be and balancing the weights of the reconstruction error loss term and the normal distribution regularization term.
@@ -182,7 +182,7 @@ Here, {{< math.inline >}} \( A \) {{</ math.inline >}} is the normalization cons
 Furthermore, the lower bound {{< math.inline >}} \( \mathcal{L}(\theta, \phi, x^{(i)}) \) {{</ math.inline >}} can be approximated as:
 
 $$
-\mathcal{L}(\theta, \phi, x^{(i)}) \simeq \frac{1}{2} \sum_{j=1}^{J}(1 + log( (\sigma_{j}^{(i)})^{2}) - (\mu_{j}^{(i)})^{2} - (\sigma_{j}^{(i)})^{2}) -\frac{1}{2 \sigma^{2}} \sum_{i=1}^{N}((x^{(i)} - \hat{x}^{(i)})^{2})
+\mathcal{L}(\theta, \phi, x^{(i)}) \simeq \frac{1}{2} \sum_{j=1}^{J}(1 + log( (\sigma_{j}^{(i)})^{2}) - (\mu_{j}^{(i)})^{2} - (\sigma_{j}^{(i)})^{2}) -\frac{1}{2 \sigma^{2}} (x^{(i)} - \hat{x}^{(i)})^{2}
 $$
 
 Finally, the loss function can be defined as:
@@ -191,7 +191,7 @@ $$
 Loss = \sum_{i=1}^{N}(-\mathcal{L}(\theta, \phi, x^{(i)}))
 $$
 $$
-= \sum_{i=1}^{N}(\frac{1}{2 \sigma^{2}} \sum_{i=1}^{N}((x^{(i)} - \hat{x}^{(i)})^{2})) + \sum_{i=1}^{N}(\frac{1}{2} \sum_{j=1}^{J}(-1 - log( (\sigma_{j}^{(i)})^{2}) + (\mu_{j}^{(i)})^{2} + (\sigma_{j}^{(i)})^{2}) )
+= \sum_{i=1}^{N}(\frac{1}{2 \sigma^{2}} (x^{(i)} - \hat{x}^{(i)})^{2}) + \sum_{i=1}^{N}(\frac{1}{2} \sum_{j=1}^{J}(-1 - log( (\sigma_{j}^{(i)})^{2}) + (\mu_{j}^{(i)})^{2} + (\sigma_{j}^{(i)})^{2}) )
 $$
 
 These assumptions help solidify each component of the variational autoencoder. The encoder is a neural network that takes data as input and outputs parameters {{< math.inline >}} \( \mu^{(i)} \) {{</ math.inline >}} and {{< math.inline >}} \( \sigma^{(i)} \) {{</ math.inline >}} of a diagonal distribution in the latent space. In the latent space, a diagonal multivariate Gaussian distribution is created based on the encoder's parameters, and a random variable sample {{< math.inline >}} \( z^{(i)} \) {{</ math.inline >}} is sampled from this distribution. The decoder, another neural network, takes the latent space variable as input and produces a reconstruction of the data in the dataset space.
@@ -370,6 +370,8 @@ class UnitGaussKullbackLeiblerDivergenceLoss(nn.Module):
         return d_kl
 
 ```
+
+Note: In the theoretical derivation of the loss function, we used the sum of all samples. In the code, however, we use the average to avoid large numbers and to maintain consistent loss values for datasets of different sizes.
 
 ### Train and validate one epoch
 
