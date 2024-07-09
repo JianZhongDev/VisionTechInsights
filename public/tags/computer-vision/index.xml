@@ -6,8 +6,15 @@
     <description>Recent content in Computer Vision on Vision Tech Insights</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 23 Jun 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 08 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/computer-vision/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Gentle Introduction to Variational Autoencoders: Concept and PyTorch Implementation Guide</title>
+      <link>http://localhost:1313/posts/gentle_introduction_to_variational_autoencoders/</link>
+      <pubDate>Mon, 08 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/gentle_introduction_to_variational_autoencoders/</guid>
+      <description>A comprehensive guide on the concepts and PyTorch implementation of variational autoencoder.</description>
+    </item>
     <item>
       <title>Autoencoders with PyTorch: Full Code Guide</title>
       <link>http://localhost:1313/posts/autoencoders_with_pytorch_full_code_guide/</link>

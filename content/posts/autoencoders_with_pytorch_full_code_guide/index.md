@@ -1034,7 +1034,7 @@ If you found this article helpful, please cite it as:
 Or
 
 ```html
-@article{zhong2024buildtrainVGGPyTorch,
+@article{zhong2024buildtrainAutoencoderPyTorch,
   title   = "Autoencoders with PyTorch: Full Code Guide",
   author  = "Zhong, Jian",
   journal = "jianzhongdev.github.io",
