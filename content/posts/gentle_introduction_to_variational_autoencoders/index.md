@@ -161,7 +161,7 @@ $$
  D_{KL}(q_{\phi}(z|x^{(i)})||p_{\theta}(z|x^{(i)})) = \frac{1}{2} \sum_{j=1}^{J}(-1 - log( (\sigma_{j}^{(i)})^{2}) + (\mu_{j}^{(i)})^{2} + (\sigma_{j}^{(i)})^{2})
 $$
 
-(NOTE: refer *examples* section of the [LK Divergence Wikipedia page](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) for the expressoin above)
+(NOTE: refer the *Examples* section of the [LK Divergence Wikipedia page](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) for the expressoin above)
 
 Here,  {{< math.inline >}} \( j \) {{</ math.inline >}} indexes the dimensions of the latent space Gaussian distribution, and  {{< math.inline >}} \( J \) {{</ math.inline >}} specifies the dimensionality, which is set when building the variational autoencoder model.
 
