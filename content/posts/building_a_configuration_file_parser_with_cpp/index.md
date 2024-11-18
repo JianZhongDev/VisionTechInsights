@@ -45,7 +45,7 @@ Once we've nailed down the requirements, we can begin designing the data structu
 
 ### Generic Entry
 
-To handle the task of storing variables with different data types (requirement 2), we can develop our own custom class called `GenericEntry`. This class will enable us to access the data within it using the `set()` and `get()` methods for writing and reading data, respectively. Since different data types require different methods for reading and writing, we make these `set()` and `get()` methods virtual and require subclasses to implement them. The `GenericEntry` class also includes a  `type_name` member and a `get_typename()` method to record the data type and verify data types.
+To handle the task of storing variables with different data types (requirement 2), we can develop our own custom class called `GenericEntry`. Considering different data types would require specifically designed writing and reading methods for data access from the data container, we saved the data writing and reading methods (i.e. the `set()` and `get()` methods) for future subclass to define. The `GenericEntry` class also includes a  `type_name` member and a `get_typename()` method to record the data type and verify data types.
 
 For converting data to and from strings (requirement 3), considering that various data types require different approaches for this conversion, the `GenericEntry` class provides `write_val_string()` and `read_val_string()` methods. These methods facilitate converting the data value to a string and vice versa.
 
@@ -63,15 +63,7 @@ public:
 		this->type_name = "generic_entry";
 	}
 
-	// Set value of the entry
-	virtual void set() {
-		//Override this method in subclass 
-	}
-
-	// Get value of the entry
-	virtual void get() {
-		//Override this method in subclass 
-	}
+	// NOTE: direct data access function to be implemented in the subclasses
 
 	// Return string of the type name
 	void get_typename(std::string* dst_string) {
@@ -79,19 +71,19 @@ public:
 	}
 
 	// Write the value of the entry into string
-	virtual void write_val_string(std::string* dst_string) {
+	virtual void write_val_string(std::string* dst_string) = 0 {
 		//Override this method in subclass 
 	}
 
 	// Read value of the entry from string
-	virtual void read_val_string(const std::string& src_string) {
+	virtual void read_val_string(const std::string& src_string) = 0{
 		//Override this method in subclass 
 	}
 };
 
 ```
 
-Once we've set up the most basic entry type, we create a more specialized subclass named `TypedEntry`. Leveraging the generics template feature, we implement the `set()` and `get()` functions. However, because custom classes, iterable types, and primitive data types (like `int` and `unsigned int`) require unique approaches for converting their data to strings, we leave the `write_val_string()`and `read_val_string()` methods for future implementation in more specialized subclasses.
+Once we've set up the most basic entry type, we create a more specialized subclass named `TypedEntry`. Leveraging the generics template feature, we define the `set()` and `get()` functions. However, because custom classes, iterable types, and primitive data types (like `int` and `unsigned int`) require unique approaches for converting their data to strings, we still leave the `write_val_string()`and `read_val_string()` methods from the base class `GenericEntry` for future implementation in more specialized subclasses.
 
 ```C++ {linenos=true}
 // Entry of generic type definition
@@ -105,33 +97,21 @@ public:
 		this->type_name = "typed_entry";
 	}
 	//Constructor with initial value
-	TypedEntry(data_t data) {
-		this->TypedEntry();
+	TypedEntry(data_t data) : TypedEntry() {
 		this->data = data_t(data);
 	}
 
 	// Implemented set entry value method
-	template<typename data_t>
 	void set(const data_t& data) {
 		this->data = data_t(data);
 	}
 
 	// Implemented get entry value method
-	template<typename data_t>
 	void get(data_t* data_p) {
 		*data_p = data_t(this->data);
 	}
 
-	virtual void write_val_string(std::string* dst_string) {
-		//Override this method in subclass 
-	}
-
-	virtual void read_val_string(const std::string& src_string) {
-		//Override this method in subclass
-	}
-
 };
-
 ```
 
 Primitive types (like `int` and `unsigned int`) have straightforward methods for converting between data and strings. We can implement their entry classes like this: For each specific primitive type, we simply inherit from the primitive type entry and specify the type name in the constructors.
@@ -145,14 +125,13 @@ public:
 	PrimitiveTypeEntry() {
 		this->type_name = "primitivetype_entry";
 	}
-	PrimitiveTypeEntry(const data_t& data) {
-		this->PrimitiveTypeEntry();
+	PrimitiveTypeEntry(const data_t& data) : PrimitiveTypeEntry() {
 		this->data = data_t(data);
 	}
-	virtual void write_val_string(std::string* dst_string) {
+	virtual void write_val_string(std::string* dst_string) override {
 		*dst_string = std::to_string(this->data);
 	}
-	virtual void read_val_string(const std::string& src_string) {
+	virtual void read_val_string(const std::string& src_string) override {
 		if (std::is_fundamental<data_t>::value) { // validate the data type is primitive data type
 			std::stringstream(src_string) >> this->data; // use stringstream to convert value string to value
 		}
@@ -187,12 +166,11 @@ public:
 		this->type_name = "vector_primitivetype";
 	}
 
-	VectorPrimitiveTypeEntry(const std::vector<data_t>& data) {
-		this->VectorPrimitiveTypeEntry();
+	VectorPrimitiveTypeEntry(const std::vector<data_t>& data) : VectorPrimitiveTypeEntry() {
 		this->data = std::vector<data_t>(data);
 	}
 
-	virtual void write_val_string(std::string* dst_string) {
+	void write_val_string(std::string* dst_string) override {
 		std::stringstream result_strstream;
 		unsigned data_len = this->data.size();
 		unsigned count = 0;
@@ -209,7 +187,7 @@ public:
 		*dst_string = result_strstream.str();
 	}
 
-	virtual void read_val_string(const std::string& src_string) {
+	void read_val_string(const std::string& src_string) override {
 		// remove '{', '}', and '_'
 		std::string tmp_str = helper_extract_string_between_enclosure(src_string, str_enclosure[0], str_enclosure[1]);
 		tmp_str = helper_clean_tailheadchars_string(tmp_str, std::unordered_set<char>{' '});
@@ -253,12 +231,12 @@ public:
 		this->data = data;
 	}
 
-	virtual void write_val_string(std::string* dst_string) {
+	void write_val_string(std::string* dst_string) override {
 		// Add " " to string
 		*dst_string = str_enclosure[0] + std::string(this->data) + str_enclosure[1];
 	}
 
-	virtual void read_val_string(const std::string& src_string) {
+	void read_val_string(const std::string& src_string) override {
 		// Extract string between " "
 		std::string tmp_str = helper_extract_string_between_enclosure(src_string, str_enclosure[0], str_enclosure[1]);
 		this->data = std::string(tmp_str);
