@@ -40,6 +40,8 @@ languages:
         - name: Tags
           url: tags/
           weight: 10
+        - name: Projects
+          url: projects/
         # - name: WiKi
         #   url: 
 
@@ -102,6 +104,8 @@ params:
         url: posts
       - name: Tags
         url: tags
+      - name: Projects
+        url: projects
 
   # home-info mode
   homeInfoParams:
@@ -111,8 +115,14 @@ params:
       Welcome to Vision Tech Insights! 
 
 
-      I am Jian Zhong, a UC Berkeley PhD candidate specializing in ultrafast imaging technology. Join me as I share my learning notes on optical and imaging technologies, from hardware to software development. 
-      Let’s explore together!
+      Hi, I'm Jian Zhong—an independent developer and researcher with a passion for AI, optics, and imaging technologies, spanning everything from hardware to software.
+
+
+      Join me as I share my learning journey—let’s explore and grow together!
+
+
+      Also, please feel free to explore my work in the [**Projects**](projects/) tab.
+
 
   socialIcons:
     - name: github
