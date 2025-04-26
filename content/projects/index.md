@@ -2,7 +2,7 @@
 author: "Jian Zhong"
 title: "Projects"
 date: "2025-04-21"
-description: "You are more than welcome to **click the title** of each project to check out the details"
+description: "You are more than welcome to click the title of each project to check out the details"
 tags: ["projects"]
 categories: ["projects"]
 series: ["projects"]
